@@ -1,0 +1,2 @@
+precision,memory_format,layout_conversion_ms_per_step,batchnorm_ms_per_step,all_gpu_ms_per_step,share,conversion_kernel_types
+fp32,channels_last+native_bn,2.149,15.094,93.815,2.3%,2

@@ -1,0 +1,2 @@
+precision,memory_format,layout_conversion_ms_per_step,batchnorm_ms_per_step,all_gpu_ms_per_step,share,conversion_kernel_types
+bf16,nchw,6.251,17.637,57.241,10.9%,2

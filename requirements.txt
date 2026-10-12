@@ -1,0 +1,14 @@
+# PyTorch with CUDA 12.8+ (needed for RTX 50-series / sm_120) is assumed to be
+# installed already in the `dl` conda env, e.g.:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+librosa
+numpy
+pandas
+matplotlib
+tabulate
+scikit-learn
+seaborn
+tqdm
+scipy
+# Part 3 fallback only, if nvcc / VS Build Tools won't set up:
+# cupy-cuda12x

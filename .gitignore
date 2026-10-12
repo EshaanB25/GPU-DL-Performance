@@ -1,0 +1,22 @@
+# Large or machine-specific profiling outputs
+*.nsys-rep
+*.sqlite
+*.qdstrm
+trace_*.json
+logs/
+
+# Build outputs
+matmul
+matmul.exe
+*.exp
+*.lib
+*.obj
+
+# Data and checkpoints
+data/
+*.pt
+*.pth
+
+# Python
+__pycache__/
+*.pyc

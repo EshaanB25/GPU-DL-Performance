@@ -1,0 +1,2 @@
+precision,memory_format,layout_conversion_ms_per_step,batchnorm_ms_per_step,all_gpu_ms_per_step,share,conversion_kernel_types
+fp16,channels_last,4.717,124.622,164.698,2.9%,2
