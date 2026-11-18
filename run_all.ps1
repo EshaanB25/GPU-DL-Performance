@@ -5,7 +5,7 @@
 #     powershell -ExecutionPolicy Bypass -File run_all.ps1
 #
 # Optional: point Part 2c at real ASVspoof audio (otherwise it uses synthetic audio)
-#     powershell -ExecutionPolicy Bypass -File run_all.ps1 -DataRoot "C:\SEM 6\DL\DL_Project\Dataset_2"
+#     powershell -ExecutionPolicy Bypass -File run_all.ps1 -DataRoot "C:\path\to\ASVspoof2019"
 #
 # Before running: charger plugged in, Windows power mode "Balanced", GPU clock locked
 # (admin PowerShell: nvidia-smi -lgc 210,1500; undo with nvidia-smi -rgc),
