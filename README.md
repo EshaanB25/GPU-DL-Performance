@@ -8,6 +8,9 @@ SAFE-Net (1.69 M parameters, `safenet_model.py`, unchanged) takes three views of
 fused through a residual block, a BiLSTM and an autoencoder branch into a
 classifier. It trains on ASVspoof 2019 LA with a 9x-weighted cross-entropy loss.
 
+**Tools:** PyTorch (AMP, Profiler), NVIDIA Nsight Systems with NVTX, CUDA C++,
+CuPy, cuBLAS, cuDNN.
+
 ## Key results
 
 | Finding | Result |
