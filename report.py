@@ -52,13 +52,13 @@ def part1():
     lines.append(f"\n## Part 1: precision x batch size ({dev})\n")
     lines.append(ok.pivot(index="batch", columns="precision", values="samples_per_s")
                  .pipe(md) + "\n\n*samples/s*\n")
-    lines.append("| Placeholder | Value | Note |\n|---|---|---|")
-    add("[A] smallest batch tested", int(df["batch"].min()))
+    lines.append("| Summary | Value | Note |\n|---|---|---|")
+    add("Smallest batch tested", int(df["batch"].min()))
     for prec in ["fp32", "fp16", "bf16"]:
         g = ok[ok["precision"] == prec]
         if len(g):
             oom = (df[(df["precision"] == prec)]["status"] == "OOM").any()
-            add(f"[B] largest batch that fit, {prec}", int(g["batch"].max()),
+            add(f"Largest batch that fit, {prec}", int(g["batch"].max()),
                 "next size ran out of memory" if oom else "no OOM in the sweep")
     base = ok[ok["precision"] == "fp32"].set_index("batch")
     for prec in ["fp16", "bf16"]:
@@ -68,10 +68,10 @@ def part1():
             continue
         b = common.max()           # largest batch every precision ran at
         sp = g.loc[b, "samples_per_s"] / base.loc[b, "samples_per_s"]
-        add(f"[X] {prec} speed-up over fp32", f"{sp:.2f}x", f"batch {b}")
+        add(f"{prec} speed-up over fp32", f"{sp:.2f}x", f"batch {b}")
         if pd.notna(g.loc[b, "peak_mem_mb"]) and pd.notna(base.loc[b, "peak_mem_mb"]):
             sv = 1 - g.loc[b, "peak_mem_mb"] / base.loc[b, "peak_mem_mb"]
-            add(f"[Y] {prec} memory saving vs fp32", f"{sv:.0%}", f"batch {b}")
+            add(f"{prec} memory saving vs fp32", f"{sv:.0%}", f"batch {b}")
         best = max(g.loc[c, "samples_per_s"] / base.loc[c, "samples_per_s"] for c in common)
         add(f"{prec} best speed-up at any common batch", f"{best:.2f}x")
 
@@ -135,7 +135,7 @@ def part2c():
         w0 = fly[fly["workers"] == 0]
         best = fly.loc[fly["samples_per_s"].idxmax()]
         gpu = df[df["setting"] == "precomputed"]["samples_per_s"].iloc[0]
-        lines.append("| Placeholder | Value | Note |\n|---|---|---|")
+        lines.append("| Summary | Value | Note |\n|---|---|---|")
         if len(w0):
             w0 = w0.iloc[0]
             add("0 workers (SAFE-Net default)", f"{w0['seconds']} s, {w0['samples_per_s']} samples/s",
@@ -164,9 +164,9 @@ def part3():
     piv = df.pivot(index="size", columns="kernel", values="gflops")
     lines.append("\n## Part 3: CUDA matmul vs cuBLAS\n")
     lines.append(md(piv) + "\n\n*GFLOPS*\n")
-    lines.append("| Placeholder | Value | Note |\n|---|---|---|")
+    lines.append("| Summary | Value | Note |\n|---|---|---|")
     t = df[df["kernel"] == "tiled"]
-    add("[Z] best tiled GFLOPS", f"{t['gflops'].max():.0f}", f"N = {int(t.loc[t['gflops'].idxmax(), 'size'])}")
+    add("Best tiled GFLOPS", f"{t['gflops'].max():.0f}", f"N = {int(t.loc[t['gflops'].idxmax(), 'size'])}")
     n = piv.index.max()
     add(f"Tiled vs naive at N={n}", f"{piv.loc[n, 'tiled'] / piv.loc[n, 'naive']:.1f}x")
     add(f"Tiled as % of cuBLAS at N={n}", f"{piv.loc[n, 'tiled'] / piv.loc[n, 'cublas']:.0%}")
