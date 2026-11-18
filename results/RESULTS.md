@@ -12,17 +12,17 @@
 
 *samples/s*
 
-| Placeholder | Value | Note |
+| Summary | Value | Note |
 |---|---|---|
-| [A] smallest batch tested | 32 |  |
-| [B] largest batch that fit, fp32 | 256 | no OOM in the sweep |
-| [B] largest batch that fit, fp16 | 256 | no OOM in the sweep |
-| [B] largest batch that fit, bf16 | 256 | no OOM in the sweep |
-| [X] fp16 speed-up over fp32 | 1.55x | batch 256 |
-| [Y] fp16 memory saving vs fp32 | 73% | batch 256 |
+| Smallest batch tested | 32 |  |
+| Largest batch that fit, fp32 | 256 | no OOM in the sweep |
+| Largest batch that fit, fp16 | 256 | no OOM in the sweep |
+| Largest batch that fit, bf16 | 256 | no OOM in the sweep |
+| fp16 speed-up over fp32 | 1.55x | batch 256 |
+| fp16 memory saving vs fp32 | 73% | batch 256 |
 | fp16 best speed-up at any common batch | 1.55x |  |
-| [X] bf16 speed-up over fp32 | 1.44x | batch 256 |
-| [Y] bf16 memory saving vs fp32 | 73% | batch 256 |
+| bf16 speed-up over fp32 | 1.44x | batch 256 |
+| bf16 memory saving vs fp32 | 73% | batch 256 |
 | bf16 best speed-up at any common batch | 1.58x |  |
 
 ## Optimisation: channels_last memory format
@@ -72,7 +72,7 @@
 | on_the_fly  |        12 |      2.8  |          1142.4 | 1%                | 58%            |
 | on_the_fly  |        16 |      2.64 |          1213.6 | 2%                | 62%            |
 
-| Placeholder | Value | Note |
+| Summary | Value | Note |
 |---|---|---|
 | 0 workers (SAFE-Net default) | 24.32 s, 131.6 samples/s | waiting on data 95% |
 | Best worker count | 16 workers, 1213.6 samples/s | 9.2x faster than 0 workers |
@@ -89,9 +89,9 @@
 
 *GFLOPS*
 
-| Placeholder | Value | Note |
+| Summary | Value | Note |
 |---|---|---|
-| [Z] best tiled GFLOPS | 1360 | N = 2048 |
+| Best tiled GFLOPS | 1360 | N = 2048 |
 | Tiled vs naive at N=4096 | 1.4x |  |
 | Tiled as % of cuBLAS at N=4096 | 11% |  |
 | Max error vs cuBLAS | 3.9e-05 | OK |
